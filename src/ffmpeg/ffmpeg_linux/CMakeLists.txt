@@ -5,7 +5,7 @@ project("ffmpeg_linux"
 
 set(FFMPEG_FFTOOLS "${PROJECT_SOURCE_DIR}/../fftools")
 set(FFMPEG_SRC "${PROJECT_SOURCE_DIR}/..")
-set(APP_NAME "fftools")
+set(LIB_NAME "ffmpeg")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 include_directories(${FFMPEG_BUILD} ${FFMPEG_SRC} ${FFMPEG_FFTOOLS})
@@ -20,7 +20,7 @@ link_directories(
 )
 
 add_library(
-        ${APP_NAME}
+        ${LIB_NAME}
         SHARED
         ffmpeg_linux.c
         "${FFMPEG_FFTOOLS}/ffmpeg_filter.c"
@@ -30,7 +30,7 @@ add_library(
         "${FFMPEG_FFTOOLS}/cmdutils.c"
 )
 
-target_link_libraries(${APP_NAME}
+target_link_libraries(${LIB_NAME}
         avdevice
         avfilter
         avformat
@@ -50,3 +50,5 @@ target_link_libraries(${APP_NAME}
         m
         z
         Xext)
+
+install(TARGETS ${LIB_NAME})
