@@ -54,3 +54,4 @@ target_link_libraries(${LIB_NAME}
         Xext)
 
 install(TARGETS ${LIB_NAME})
+install(FILES ffmpeg_linux.h DESTINATION include)
