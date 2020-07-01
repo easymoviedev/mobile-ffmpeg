@@ -5,19 +5,8 @@ project("ffmpeg_linux"
 
 set(FFMPEG_FFTOOLS "${PROJECT_SOURCE_DIR}/../fftools")
 set(FFMPEG_SRC "${PROJECT_SOURCE_DIR}/..")
-set(LIB_NAME "ffmpeg")
+set(LIB_NAME "mobileffmpeg")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
-
-include_directories(${FFMPEG_BUILD} ${FFMPEG_SRC} ${FFMPEG_FFTOOLS})
-link_directories(
-        "${FFMPEG_BUILD}/libavformat"
-        "${FFMPEG_BUILD}/libavutil"
-        "${FFMPEG_BUILD}/libavcodec"
-        "${FFMPEG_BUILD}/libswscale"
-        "${FFMPEG_BUILD}/libswresample"
-        "${FFMPEG_BUILD}/libavdevice"
-        "${FFMPEG_BUILD}/libavfilter"
-)
 
 add_library(
         ${LIB_NAME}
@@ -29,6 +18,19 @@ add_library(
         "${FFMPEG_FFTOOLS}/ffmpeg_cuvid.c"
         "${FFMPEG_FFTOOLS}/cmdutils.c"
 )
+
+target_include_directories(${LIB_NAME} PUBLIC ${FFMPEG_BUILD} ${FFMPEG_SRC} ${FFMPEG_FFTOOLS})
+target_link_directories(${LIB_NAME} PUBLIC
+        "${FFMPEG_BUILD}/libavformat"
+        "${FFMPEG_BUILD}/libavutil"
+        "${FFMPEG_BUILD}/libavcodec"
+        "${FFMPEG_BUILD}/libswscale"
+        "${FFMPEG_BUILD}/libswresample"
+        "${FFMPEG_BUILD}/libavdevice"
+        "${FFMPEG_BUILD}/libavfilter"
+)
+
+
 
 target_link_libraries(${LIB_NAME}
         avdevice
