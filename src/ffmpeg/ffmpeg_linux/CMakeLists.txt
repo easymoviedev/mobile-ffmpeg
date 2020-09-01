@@ -41,10 +41,8 @@ target_link_libraries(${LIB_NAME}
         avcodec
         avutil
         pthread
-        xcb
         m
-        z
-        Xext)
+        z)
 
 install(TARGETS ${LIB_NAME})
 install(FILES ffmpeg_cli.h DESTINATION include)
