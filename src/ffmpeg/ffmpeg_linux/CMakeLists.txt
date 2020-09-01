@@ -41,14 +41,7 @@ target_link_libraries(${LIB_NAME}
         avcodec
         avutil
         pthread
-        va-drm
-        va
-        va-x11
         xcb
-        Xv
-        va
-        vdpau
-        X11
         m
         z
         Xext)
