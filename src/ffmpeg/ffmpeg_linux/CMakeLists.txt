@@ -30,7 +30,9 @@ target_link_directories(${LIB_NAME} PUBLIC
         "${FFMPEG_BUILD}/libavfilter"
 )
 
-
+if (APPLE)
+    set(VIDEOTOOLBOX_FMWK "-framework VideoToolbox")
+endif()
 
 target_link_libraries(${LIB_NAME}
         avdevice
@@ -40,6 +42,7 @@ target_link_libraries(${LIB_NAME}
         swscale
         avcodec
         avutil
+        ${VIDEOTOOLBOX_FMWK}
         pthread
         m
         z)
