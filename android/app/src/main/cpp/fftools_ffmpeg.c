@@ -5450,10 +5450,11 @@ int ffmpeg_execute(int argc, char **argv)
         { "dn", OPT_BOOL | OPT_VIDEO | OPT_OFFSET | OPT_INPUT | OPT_OUTPUT, { .off = OFFSET(data_disable) },
             "disable data" },
 
-    #if CONFIG_VAAPI
-        { "vaapi_device", HAS_ARG | OPT_EXPERT, { .func_arg = opt_vaapi_device },
-            "set VAAPI hardware device (DRM path or X11 display name)", "device" },
-    #endif
+    // opt_vaapi_device is not defined
+    // #if CONFIG_VAAPI
+    //     { "vaapi_device", HAS_ARG | OPT_EXPERT, { .func_arg = opt_vaapi_device },
+    //         "set VAAPI hardware device (DRM path or X11 display name)", "device" },
+    // #endif
 
     #if CONFIG_QSV
         { "qsv_device", HAS_ARG | OPT_STRING | OPT_EXPERT, { &qsv_device },
