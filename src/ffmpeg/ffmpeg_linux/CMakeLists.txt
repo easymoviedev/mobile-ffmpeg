@@ -21,7 +21,7 @@ add_library(
         ${LIB_NAME}
         SHARED
         "${FFMPEG_FFTOOLS}/fftools_ffmpeg.c"
-        ffmpeg_linux.c
+        ffmpeg_linux_log.c
         "${FFMPEG_FFTOOLS}/fftools_ffmpeg_filter.c"
         "${FFMPEG_FFTOOLS}/fftools_ffmpeg_hw.c"
         "${FFMPEG_FFTOOLS}/fftools_cmdutils.c"
