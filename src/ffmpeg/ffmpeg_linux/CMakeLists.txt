@@ -61,4 +61,4 @@ target_link_libraries(${LIB_NAME}
         z)
 
 install(TARGETS ${LIB_NAME})
-install(FILES ffmpeg_cli.h DESTINATION include)
+install(FILES ffmpeg_cli.h DESTINATION include/ffmpeg_cli)
