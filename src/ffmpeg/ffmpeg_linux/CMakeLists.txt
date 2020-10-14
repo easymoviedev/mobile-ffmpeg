@@ -3,13 +3,13 @@ cmake_minimum_required(VERSION 3.9)
 project("ffmpeg_linux"
         LANGUAGES C CXX)
 
-set(FFMPEG_FFTOOLS "${PROJECT_SOURCE_DIR}/../fftools")
+set(FFMPEG_FFTOOLS "../../../android/app/src/main/cpp")
 set(FFMPEG_SRC "${PROJECT_SOURCE_DIR}/..")
 set(LIB_NAME "mobileffmpeg")
 set(CMAKE_POSITION_INDEPENDENT_CODE ON)
 
 if (APPLE)
-    set(FFMPEG_VIDEOTOOLBOX_SRC "${FFMPEG_FFTOOLS}/ffmpeg_videotoolbox.c")
+    set(FFMPEG_VIDEOTOOLBOX_SRC "../fftools/ffmpeg_videotoolbox.c")
     set(VIDEOTOOLBOX_FMWK "-framework VideoToolbox")
     set(COREVIDEO_FMWK "-framework CoreVideo")
     set(CORETEXT_FMWK "-framework CoreText")
@@ -20,13 +20,16 @@ endif()
 add_library(
         ${LIB_NAME}
         SHARED
-        ffmpeg_linux.c
-        "${FFMPEG_FFTOOLS}/ffmpeg_filter.c"
-        "${FFMPEG_FFTOOLS}/ffmpeg_hw.c"
-        "${FFMPEG_FFTOOLS}/ffmpeg_opt.c"
-        "${FFMPEG_FFTOOLS}/ffmpeg_cuvid.c"
-        "${FFMPEG_FFTOOLS}/cmdutils.c"
+        "${FFMPEG_FFTOOLS}/fftools_ffmpeg.c"
+        ffmpeg_linux_log.c
+        "${FFMPEG_FFTOOLS}/fftools_ffmpeg_filter.c"
+        "${FFMPEG_FFTOOLS}/fftools_ffmpeg_hw.c"
+        "${FFMPEG_FFTOOLS}/fftools_cmdutils.c"
+        "${FFMPEG_FFTOOLS}/fftools_ffprobe.c"
+        "${FFMPEG_FFTOOLS}/fftools_ffmpeg_opt.c"
+        "${FFMPEG_FFTOOLS}/mobileffmpeg_exception.c"
         ${FFMPEG_VIDEOTOOLBOX_SRC}
+
 )
 
 target_include_directories(${LIB_NAME} PUBLIC ${FFMPEG_BUILD} ${FFMPEG_SRC} ${FFMPEG_FFTOOLS})
